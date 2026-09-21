@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is the word I knew</title>
+    <style>
+        /* Base page styling */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212; 
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        /* Headline styling */
+        header {
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #2c3e50, #000000);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            letter-spacing: 2px;
+            margin: 0;
+            text-transform: uppercase;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        p.subtitle {
+            font-size: 1.2em;
+            color: #aaaaaa;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Photo Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 30px 50px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Individual Photo Styling & Hover Effects */
+        .photo-container {
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            aspect-ratio: 1 / 1; /* Keeps the grid items uniformly square */
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        /* The Hover Animation */
+        .photo-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .photo-container:hover img {
+            transform: scale(1.1); 
+        }
+
+        /* Lightbox (Zoomed image overlay) */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            object-fit: contain;
+        }
+
+        #lightbox-close {
+            color: white;
+            font-size: 50px;
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        #lightbox-close:hover {
+            color: #ff4757;
+        }
+
+        /* Entrance animation for the title */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>This is the word I knew</h1>
+        <p class="subtitle">A visual journey through my memories</p>
+    </header>
+
+    <!-- Gallery Section -->
+    <div class="gallery">
+        <!-- Photo 1 -->
+        <div class="photo-container" onclick="openLightbox(this)">
+            <img src="1000093567.png" alt="Free Fire Crowned Glory 2026">
+        </div>
+        <!-- Photo 2 -->
+        <div class="photo-container" onclick="openLightbox(this)">
+            <img src="1000104539.png" alt="Dark conference room at sunset">
+        </div>
+        <!-- Photo 3 -->
+        <div class="photo-container" onclick="openLightbox(this)">
+            <img src="1000107650.png" alt="Standing with an umbrella in front of a waterfall">
+        </div>
+        <!-- Photo 4 -->
+        <div class="photo-container" onclick="openLightbox(this)">
+            <img src="1000097760.jpg" alt="Boy wearing glasses">
+        </div>
+        <!-- Photo 5 -->
+        <div class="photo-container" onclick="openLightbox(this)">
+            <img src="1000097248.jpg" alt="A sweet moment between two children">
+        </div>
+        <!-- Photo 6 -->
+        <div class="photo-container" onclick="openLightbox(this)">
+            <img src="1000097247.jpg" alt="Young girl walking outside in a pink jacket">
+        </div>
+    </div>
+
+    <!-- The Lightbox -->
+    <div id="lightbox">
+        <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Zoomed Photo">
+    </div>
+
+    <!-- The Interactive JavaScript -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            const imgSrc = element.querySelector('img').src;
+            lightboxImg.src = imgSrc;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+    </script>
+
+</body>
+  </html>
+
